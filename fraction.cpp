@@ -236,6 +236,7 @@ class Fraction {
         Fraction decimal_part();
         lint     lint_part();
         ldouble  to_real();
+        cfracs   get_cfracs();
         void     inverse();
         void     continued_fraction();
         void     print();  // print fraction
@@ -326,6 +327,10 @@ Fraction Fraction::reduce() {
     return *this;
 }
 
+cfracs Fraction::get_cfracs() {
+    return this->cf;
+}
+
 ldouble Fraction::to_real() {
     ldouble n, d;
     n = this->numer.to_real();
@@ -370,7 +375,7 @@ void Fraction::continued_fraction() {
         f = f.decimal_part();
         f.inverse();
         f = f.rationarize();
-        f.print();
+        // f.print();
         // this->result();
         std::vector< Fraction >::iterator itr=fvec.begin();
         
