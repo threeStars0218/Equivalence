@@ -10,6 +10,13 @@ typedef long double                ldouble;
 typedef std::pair< lint, lint >    P;
 typedef std::vector< lint >        cfracs;
 
+lint gcd( lint a, lint b ) {
+    if ( b == 0 ) return a;
+    a %= b;
+    
+    return gcd( b, a );
+}
+
 // *****************************************************************************************************
 // class Irr
 // *****************************************************************************************************
@@ -306,9 +313,9 @@ Fraction Fraction::rationarize() {
 
 Fraction Fraction::reduce() {
     lint m, n;
-    m = std::__gcd( this->numer.get_a(), this->numer.get_sq().first );
-    n = std::__gcd( this->denom.get_a(), this->denom.get_sq().first );
-    m = std::__gcd( m, n );
+    m = gcd( this->numer.get_a(), this->numer.get_sq().first );
+    n = gcd( this->denom.get_a(), this->denom.get_sq().first );
+    m = gcd( m, n );
 
     if ( m != 1 ) {
         Fraction f = *this;

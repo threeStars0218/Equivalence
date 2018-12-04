@@ -42,8 +42,8 @@ std::vector< lint > get_Bs( const lint D ) {
 bool is_relatively_prime(const lint A, const lint B, const lint C) {
     lint m;
     lint a = A, b = -B, c = -C;
-    m = std::__gcd( a, b );
-    m = std::__gcd( m, c );
+    m = gcd( a, b );
+    m = gcd( m, c );
 
     return m == 1;
 }
